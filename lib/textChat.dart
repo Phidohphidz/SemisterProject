@@ -82,7 +82,7 @@ class _ChatState extends State<Chat> {
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         Text(
-                          '2:26',
+                          '3:00',
                           style: GoogleFonts.roboto(color: Color(0xff41a7cd)),
                         )
                       ],
