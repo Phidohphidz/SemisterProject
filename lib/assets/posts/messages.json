@@ -1,0 +1,90 @@
+[
+  {
+    "StudentID": "BScICT/22/032",
+    "inbox": {
+      "partner": "BScICT/22/099",
+      "messages": [
+        {
+          "type": "send",
+          "text": "Halla guys"
+        },
+        {
+          "type": "receive",
+          "text": "I'm good, thanks!"
+        },
+        {
+          "type": "send",
+          "text": "How are you?"
+        },
+        {
+          "type": "receive",
+          "text": "I'm good, thanks!"
+        },
+        {
+          "type": "send",
+          "text": "How are you?"
+        },
+        {
+          "type": "receive",
+          "text": "I'm good, thanks!"
+        },
+        {
+          "type": "send",
+          "text": "How are you?"
+        },
+        {
+          "type": "receive",
+          "text": "I'm good, thanks!"
+        },
+        {
+          "type": "send",
+          "text": "How are you?"
+        },
+        {
+          "type": "receive",
+          "text": "I'm good, thanks!"
+        },
+        {
+          "type": "send",
+          "text": "How are you?"
+        },
+        {
+          "type": "receive",
+          "text": "I'm good, thanks!"
+        },
+        {
+          "type": "send",
+          "text": "How are you?"
+        },
+        {
+          "type": "receive",
+          "text": "I'm good, thanks!"
+        },
+        {
+          "type": "send",
+          "text": "How are you?"
+        },
+        {
+          "type": "receive",
+          "text": "I'm good, thanks!"
+        },
+        {
+          "type": "send",
+          "text": "How are you?"
+        },
+        {
+          "type": "receive",
+          "text": "I'm good, thanks! kjdjcwd ijwcec ijdwc wcijwc edciwjcwc ewcijcwdc wicewjcwe cwcujew"
+        },
+        {
+          "type": "send",
+          "text": "How are you? lwee vkowmrvwv wokwv wevkwv wv wevwvokwvw vw"
+        },
+        {
+          "type": "receive",
+          "text": "I'm good, thanks!"
+        }
+      ]
+    }
+  }
+]

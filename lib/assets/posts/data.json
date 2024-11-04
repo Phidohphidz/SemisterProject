@@ -1,0 +1,41 @@
+[
+  {
+      "studentID":"BScICT/22/032",
+      "name": "Philimon",
+      "profilePic": "none",
+      "post": {
+        "time": "none",
+        "text": "Hy, This is my school",
+        "media": {
+          "image": "https://static3.depositphotos.com/1007034/219/i/600/depositphotos_2191358-stock-photo-colorful-blocks-background.jpg",
+          "video": "none",
+          "file": "none"
+        },
+        "reactions": {
+          "Likes": "20",
+          "Comments": "50",
+          "Share": "15"
+        }
+      }
+  },
+
+  {
+    "studentID":"BScICT/22/099",
+    "name": "Philimon",
+    "profilePic": "none",
+    "post": {
+      "time": "none",
+      "text": "Hy, This is my school",
+      "media": {
+        "image": "https://th.bing.com/th/id/OIP.HxV79tFMPfBAIo0BBF-sOgHaEy?rs=1&pid=ImgDetMain",
+        "video": "none",
+        "file": "none"
+      },
+      "reactions": {
+        "Likes": "20",
+        "Comments": "50",
+        "Share": "15"
+      }
+    }
+  }
+]
