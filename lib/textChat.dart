@@ -6,9 +6,12 @@ import 'msgs.dart';
 import 'SendReceive.dart';
 import 'databases/MsgsClient.dart';
 
-void main()=>runApp(MaterialApp(
-  home: Chat(appID: "Halla",studentID: "BScICT/22/032",),
-));
+void main() => runApp(MaterialApp(
+      home: Chat(
+        appID: "Halla",
+        studentID: "BScICT/22/032",
+      ),
+    ));
 
 class Chat extends StatefulWidget {
   final String appID;
@@ -27,7 +30,7 @@ class _ChatState extends State<Chat> {
 
   late SendReceive send1;
   late Msgs msgs2;
-  Msgs sends=Msgs();
+  Msgs sends = Msgs();
 
   @override
   void initState() {
@@ -35,9 +38,9 @@ class _ChatState extends State<Chat> {
 
     inter(sends);
     sends.onMessageReceived = (message) {
-      List<dynamic> allMsgs=jsonDecode(message);
+      List<dynamic> allMsgs = jsonDecode(message);
       print(allMsgs.toString());
-      for(var msg in allMsgs){
+      for (var msg in allMsgs) {
         Update(msg["msg"], msg["type"]);
       }
     };
@@ -48,10 +51,10 @@ class _ChatState extends State<Chat> {
     };
   }
 
-  Future<void> inter(Msgs sends)async{
+  Future<void> inter(Msgs sends) async {
     await sends.connect();
-    List<String> opts=["bscict_22_032_bscict_22_042"];
-    String get=jsonEncode(opts);
+    List<String> opts = ["bscict_22_032_bscict_22_042"];
+    String get = jsonEncode(opts);
     sends.send(get);
   }
 
@@ -61,7 +64,9 @@ class _ChatState extends State<Chat> {
         Container(
           width: double.infinity,
           child: Column(
-            crossAxisAlignment: type == "recieve" ? CrossAxisAlignment.start : CrossAxisAlignment.end,
+            crossAxisAlignment: type == "recieve"
+                ? CrossAxisAlignment.start
+                : CrossAxisAlignment.end,
             children: [
               Container(
                 constraints: BoxConstraints(maxWidth: 250),
@@ -103,9 +108,9 @@ class _ChatState extends State<Chat> {
     });
   }
 
-  void insertMSGs(String room,String msg, String type){
-    List<String> message=["insert",room,msg,type];
-    String msg2=jsonEncode(message);
+  void insertMSGs(String room, String msg, String type) {
+    List<String> message = ["insert", room, msg, type];
+    String msg2 = jsonEncode(message);
     sends.send(msg2);
   }
 
@@ -119,7 +124,6 @@ class _ChatState extends State<Chat> {
       appBar: AppBar(
         backgroundColor: const Color(0xff0b1c26),
         elevation: 0.5,
-
         leading: IconButton(
           icon: Icon(
             Icons.arrow_back,
@@ -134,53 +138,46 @@ class _ChatState extends State<Chat> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Icon(
-                Icons.account_circle,
-                color: const Color(0xff00b2fd),
-                size: 30,
-                shadows: [
-                  Shadow(
-                    color: const Color(0xff0b1c26).withOpacity(0.5),
-                    blurRadius: 10,
-                    offset: const Offset(5, 5),
+              Expanded(
+                child: TextField(
+                  decoration: InputDecoration(
+                    hintText: "Enter your studentID",
+                    hintStyle: GoogleFonts.roboto(
+                      color: Color(0xff004e6a),
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    counterText: "",
                   ),
-                ],
-              ),
-              Column(
-                children: [
-
-              Text(
-                widget.appID,
-                style: GoogleFonts.roboto(
-                  textStyle: const TextStyle(
-                    color: Colors.blue,
+                  style: GoogleFonts.roboto(
+                    color: Color(0xff00b2fd),
                     fontSize: 15,
+                    fontWeight: FontWeight.bold,
                   ),
+                  maxLength: 13,
                 ),
               ),
-                  Text(
-                    widget.studentID,
-                    style: GoogleFonts.roboto(
-                      textStyle: const TextStyle(
-                        color: Colors.blue,
-                        fontSize: 15,
-                      ),
+              SizedBox(width: 20),
+              Column(children: [
+                Text(
+                  widget.appID,
+                  style: GoogleFonts.roboto(
+                    textStyle: const TextStyle(
+                      color: Colors.blue,
+                      fontSize: 15,
                     ),
                   ),
-              ]),
-
-              Icon(
-                Icons.menu,
-                color: const Color(0xff00b2fd),
-                size: 30,
-                shadows: [
-                  Shadow(
-                    color: const Color(0xff0b1c26).withOpacity(0.5),
-                    blurRadius: 10,
-                    offset: const Offset(5, 5),
+                ),
+                Text(
+                  widget.studentID,
+                  style: GoogleFonts.roboto(
+                    textStyle: const TextStyle(
+                      color: Colors.blue,
+                      fontSize: 15,
+                    ),
                   ),
-                ],
-              ),
+                ),
+              ]),
             ],
           ),
         ),
@@ -196,11 +193,11 @@ class _ChatState extends State<Chat> {
                 child: Padding(
                   padding: const EdgeInsets.all(5),
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      ...WidgetList2,
-                    ]
-                  ),
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SizedBox(height: 10),
+                        ...WidgetList2,
+                      ]),
                 ),
               ),
             ),
@@ -219,7 +216,8 @@ class _ChatState extends State<Chat> {
                       decoration: InputDecoration(
                         labelText: "Enter your message",
                         focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.indigo, width: 2.0),
+                          borderSide:
+                              BorderSide(color: Colors.indigo, width: 2.0),
                         ),
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
@@ -258,6 +256,18 @@ class _ChatState extends State<Chat> {
           ],
         ),
       ),
+      floatingActionButton: Padding(
+        padding: EdgeInsets.only(bottom: 100),
+      child: FloatingActionButton(
+          onPressed: (){
+
+          },
+        child: Icon(Icons.history,size: 25,),
+        backgroundColor: Color(0xff0f212d),
+        foregroundColor: Colors.white,
+      ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
     );
   }
 }
