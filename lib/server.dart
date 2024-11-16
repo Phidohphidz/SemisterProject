@@ -34,7 +34,7 @@ void handleClient(Socket client, Map<String,Socket> clients) {
         print(message);
         String to=all[1];
         for (var c in clients.keys) {
-          if (clients[c] != client && c==to) {
+          if (clients[c] != client) {
             clients[c]?.write('$message');
           }else{
             print('sender ${c}');

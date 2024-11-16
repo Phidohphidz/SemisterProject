@@ -1,10 +1,11 @@
 import 'package:postgres/postgres.dart';
 
+
 class Onlines {
   late PostgreSQLConnection connection;
 
   Onlines() {
-    connection = PostgreSQLConnection('localhost', 5432, 'Online',
+    connection = PostgreSQLConnection('192.168.1.125', 5432, 'Online',
         username: 'postgres', password: 'warge');
   }
 

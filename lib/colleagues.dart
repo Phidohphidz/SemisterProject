@@ -1,8 +1,8 @@
 import "package:flutter/material.dart";
 import 'package:google_fonts/google_fonts.dart';
-import 'onlinesClient.dart';
 import 'dart:convert';
 import 'textChat.dart';
+import 'databases/online.dart';
 
 
 void main() => runApp(MaterialApp(
@@ -33,34 +33,17 @@ class Colls extends StatefulWidget {
 
 class _CollsState extends State<Colls> {
   List<Widget> coll = [];
-  List<Map<String, String>> pple = [
-    {"BScICT/22/032": "Hello"},
-    {"BScICT/22/032": "Hello"},
-    {"BScICT/22/032": "Hello"},
-  ];
-  Map<String, String> anthu = {};
-  List<Widget> onlinePple = [];
-
-  late SendReceive send1;
+  late Onlines send1;
 
   @override
   void initState() {
     super.initState();
-    send1 = SendReceive();
-    send1.onMessageReceived = (anthu) {
-      List<dynamic> pple = jsonDecode(anthu);
-      print("Hello");
-      Update(pple);
-    };
-
-    send2();
+    send1=Onlines();
+    Update();
   }
-
-  Future<void> send2() async {
-    await sendMan();
-  }
-
-  void Update(List<dynamic> ppleList) {
+  void Update() async{
+    await send1.openOnline();
+    List<dynamic> ppleList=await send1.onlineUs();
     print(ppleList.toString());
     for (var hi in ppleList) {
       setState(() {

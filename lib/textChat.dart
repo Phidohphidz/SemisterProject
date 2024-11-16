@@ -2,14 +2,14 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:semesterprog/databases/Msgs.dart';
 import 'msgs.dart';
 import 'SendReceive.dart';
-import 'databases/MsgsClient.dart';
 
 void main() => runApp(MaterialApp(
       home: Chat(
         appID: "Halla",
-        studentID: "BScICT/22/032",
+        studentID: "BScICT/22/042",
       ),
     ));
 
@@ -24,38 +24,24 @@ class Chat extends StatefulWidget {
 
 class _ChatState extends State<Chat> {
   final TextEditingController _msg = TextEditingController();
-  List<MSG> msgs = [];
+  final TextEditingController _getID = TextEditingController();
   List<Widget> WidgetList2 = [];
   int i = 0;
+  int h = 0;
 
   late SendReceive send1;
-  late Msgs msgs2;
-  Msgs sends = Msgs();
 
+  late DataBase db;
   @override
-  void initState() {
+  void initState() async{
     super.initState();
-
-    inter(sends);
-    sends.onMessageReceived = (message) {
-      List<dynamic> allMsgs = jsonDecode(message);
-      print(allMsgs.toString());
-      for (var msg in allMsgs) {
-        Update(msg["msg"], msg["type"]);
-      }
-    };
+    db=DataBase();
+    await db.openConnection();
 
     send1 = SendReceive();
     send1.onMessageReceived = (message) {
       Update(message, "recieve");
     };
-  }
-
-  Future<void> inter(Msgs sends) async {
-    await sends.connect();
-    List<String> opts = ["bscict_22_032_bscict_22_042"];
-    String get = jsonEncode(opts);
-    sends.send(get);
   }
 
   void Update(message, type) {
@@ -108,10 +94,8 @@ class _ChatState extends State<Chat> {
     });
   }
 
-  void insertMSGs(String room, String msg, String type) {
-    List<String> message = ["insert", room, msg, type];
-    String msg2 = jsonEncode(message);
-    sends.send(msg2);
+  void insertMSGs(String room, String msg, String type) async{
+    await db.insertMsgs(room, msg, type);
   }
 
   String pos = 'start';
@@ -140,6 +124,7 @@ class _ChatState extends State<Chat> {
             children: [
               Expanded(
                 child: TextField(
+                  controller: _getID,
                   decoration: InputDecoration(
                     hintText: "Enter your studentID",
                     hintStyle: GoogleFonts.roboto(
@@ -258,14 +243,39 @@ class _ChatState extends State<Chat> {
       ),
       floatingActionButton: Padding(
         padding: EdgeInsets.only(bottom: 100),
-      child: FloatingActionButton(
-          onPressed: (){
+        child: FloatingActionButton(
+          onPressed: () {
+            String id = _getID.text;
+            if (h == 0) {
+              if (id.isEmpty) {
+                print("no ID");
+              } else {
+                setState(() {
+                  h = 1;
+                  WidgetList2 = [];
+                });
+                String replaced = (id.replaceAll("/", "_") +
+                        "_" +
+                        widget.studentID.replaceAll("/", "_"))
+                    .toLowerCase();
+                //inter(sends, replaced);
+              }
 
+            } else {
+              setState(() {
+                h = 0;
+                WidgetList2 = [];
+              });
+              print("Halla");
+            }
           },
-        child: Icon(Icons.history,size: 25,),
-        backgroundColor: Color(0xff0f212d),
-        foregroundColor: Colors.white,
-      ),
+          child: Icon(
+            Icons.history,
+            size: 25,
+          ),
+          backgroundColor: Color(0xff0f212d),
+          foregroundColor: Colors.white,
+        ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
     );
